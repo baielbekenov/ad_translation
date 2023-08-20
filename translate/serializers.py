@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ
+from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language
 
 
 class HashtagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hashtag
+        fields = '__all__'
+
+
+class LanguageSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Language
         fields = '__all__'
 
 
