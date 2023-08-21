@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ
+from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language
 from .serializers import HashtagSerializer, LatestUpdateSerializer, OurOfferSerializer, ServiceSerializer, \
-    IndustrySerializer, ReviewSerializer, FAQSerializer
+    IndustrySerializer, ReviewSerializer, FAQSerializer, LanguageSerializers
 
 
 # ///////////////////////////////////////////////////////
@@ -123,6 +123,12 @@ class FAQListView(APIView):
         serializers = FAQSerializer(faq, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 
+
+class LanguageListView(APIView):
+    def get(self, request, *args, **kwargs):
+        language = Language.objects.all()
+        serializers = LanguageSerializers(language, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
 
 
 

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
     ReviewCreateView, FAQCreateView, HashtagListView, LatestUpdateListView, OurOfferListView, ServiceListView, \
-    IndustryListView, ReviewListView, FAQListView
+    IndustryListView, ReviewListView, FAQListView, LanguageListView
 
 urlpatterns = [
     path('hashtags/create/', HashtagCreateView.as_view(), name='hashtag-create'),
@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('hashtags/list/', HashtagListView.as_view(), name='hashtag-list'),
     path('latest_updates/list/', LatestUpdateListView.as_view(), name='latest-update-list'),
+    path('language/list/', LanguageListView.as_view(), name='language_list'),
     path('our_offers/list/', OurOfferListView.as_view(), name='our-offer-list'),
     path('services/list/', ServiceListView.as_view(), name='service-list'),
     path('industries/list/', IndustryListView.as_view(), name='industry-list'),
