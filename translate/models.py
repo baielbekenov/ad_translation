@@ -74,6 +74,32 @@ class Review(models.Model):
         return self.title
 
 
+class Order(models.Model):
+    DOCUMENTS = 1
+    VIDEO = 2
+    AUDIO = 3
+    LINK = 4
+
+    FILE_TYPE_CHOICES = (
+        (DOCUMENTS, 'Documents'),
+        (VIDEO, 'Video'),
+        (AUDIO, 'Audio'),
+        (LINK, 'Link'),
+    )
+    services = models.ForeignKey(Service, on_delete=models.SET_NULL, blank=True, null=True)
+    industries = models.ForeignKey(Industry, on_delete=models.SET_NULL, blank=True, null=True)
+    type_file = models.IntegerField(choices=FILE_TYPE_CHOICES)
+    source_language = models.ManyToManyField(Language, related_name='source_orders')
+    target_language = models.ManyToManyField(Language, related_name='target_orders')
+    documents = models.FileField(upload_to='order_documents/')
+    deadline = models.DateField()
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=15)
+
+    def __str__(self):
+        return str(self.services)
+
+
 class FAQ(models.Model):
     question = models.CharField(max_length=200)
     answer = models.TextField()

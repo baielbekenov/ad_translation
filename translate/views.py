@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language
+from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order
 from .serializers import HashtagSerializer, LatestUpdateSerializer, OurOfferSerializer, ServiceSerializer, \
-    IndustrySerializer, ReviewSerializer, FAQSerializer, LanguageSerializers
+    IndustrySerializer, ReviewSerializer, FAQSerializer, LanguageSerializers, OrderSerializer
 
 
 # ///////////////////////////////////////////////////////
@@ -72,7 +72,23 @@ class FAQCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class OrderCreateView(APIView):
+    def post(self, request, format=None):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 # ///////////////////////////////////////////////////////
+
+class OrderListView(APIView):
+    def get(self, request, *args, **kwargs):
+        order = Order.objects.all()
+        serializers = OrderSerializer(order, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
 
 
 class HashtagListView(APIView):

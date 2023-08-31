@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from translate.models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language
+from translate.models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order
 
 # Register your models here.
 
@@ -11,4 +11,5 @@ admin.site.register(Service)
 admin.site.register(Language)
 admin.site.register(Industry)
 admin.site.register(Review)
+admin.site.register(Order)
 admin.site.register(FAQ)
