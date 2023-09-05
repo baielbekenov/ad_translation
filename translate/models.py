@@ -56,7 +56,7 @@ class Service(models.Model):
 
 class Industry(models.Model):
     iconText = models.CharField(max_length=50)
-    Img = models.ImageField(upload_to='industries/')
+    img = models.ImageField(upload_to='industries/')
     text = models.TextField()
 
     def __str__(self):
