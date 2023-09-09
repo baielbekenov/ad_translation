@@ -1,5 +1,13 @@
+from django.contrib.auth.models import AbstractUser, Permission, Group
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 from django.db import models
+from django.utils import timezone
+
+
+class User(AbstractUser):
+    def __str__(self):
+        return self.username
 
 
 class Hashtag(models.Model):

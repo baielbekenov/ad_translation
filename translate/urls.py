@@ -1,9 +1,14 @@
 from django.urls import path
 from .views import HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
     ReviewCreateView, FAQCreateView, HashtagListView, LatestUpdateListView, OurOfferListView, ServiceListView, \
-    IndustryListView, ReviewListView, FAQListView, LanguageListView, OrderCreateView, OrderListView
+    IndustryListView, ReviewListView, FAQListView, LanguageListView, OrderCreateView, OrderListView, RegisterView, \
+    LogoutView, LoginView
 
 urlpatterns = [
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+
     path('hashtags/create/', HashtagCreateView.as_view(), name='hashtag-create'),
     path('latest_updates/create/', LatestUpdateCreateView.as_view(), name='latest-update-create'),
     path('our_offers/create/', OurOfferCreateView.as_view(), name='our-offer-create'),
