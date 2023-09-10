@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
+from .models import Consult, Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -38,7 +38,7 @@ class HashtagSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class LanguageSerializers(serializers.ModelSerializer):
+class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = '__all__'
@@ -77,6 +77,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Order
         fields = '__all__'
@@ -85,4 +86,10 @@ class OrderSerializer(serializers.ModelSerializer):
 class FAQSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQ
+        fields = '__all__'
+        
+
+class ConsultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consult
         fields = '__all__'

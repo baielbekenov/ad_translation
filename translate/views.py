@@ -1,10 +1,11 @@
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 from django.contrib.auth import authenticate, login, logout
-from .models import Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
-from .serializers import HashtagSerializer, LatestUpdateSerializer, OurOfferSerializer, ServiceSerializer, \
-    IndustrySerializer, ReviewSerializer, FAQSerializer, LanguageSerializers, OrderSerializer, UserSerializer
+from .models import Consult, Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
+from .serializers import ConsultSerializer, HashtagSerializer, LatestUpdateSerializer, OurOfferSerializer, ServiceSerializer, \
+    IndustrySerializer, ReviewSerializer, FAQSerializer, LanguageSerializer, OrderSerializer, UserSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -150,24 +151,23 @@ class FAQCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class OrderCreateView(APIView):
+class OrderCreateView(generics.CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    
 
-    def post(self, request, format=None):
-        serializer = OrderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ConsultcreateView(generics.CreateAPIView):
+    queryset = Consult.objects.all()
+    serializer_class = ConsultSerializer 
+
 
 
 # ///////////////////////////////////////////////////////
 
-class OrderListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        order = Order.objects.all()
-        serializers = OrderSerializer(order, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
+class OrderListView(generics.ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    pagination_class = PageNumberPagination
 
 
 class HashtagListView(APIView):
@@ -178,64 +178,29 @@ class HashtagListView(APIView):
         return Response(serializers.data, status=status.HTTP_200_OK)
 
 
-class LatestUpdateListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        latestUpdate = LatestUpdate.objects.all()
-        serializers = LatestUpdateSerializer(latestUpdate, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
-
-    def get_image(self, obj):
-        request = self.context.get('request')
-        image_url = obj.image.url
-        return request.build_absolute_uri(image_url)
+class LatestUpdateListAPIView(generics.ListAPIView):
+    queryset = LatestUpdate.objects.all()
+    serializer_class = LatestUpdateSerializer
 
 
-class OurOfferListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        ourOffer = OurOffer.objects.all()
-        serializers = OurOfferSerializer(ourOffer, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
-
-    def get_image(self, obj):
-        request = self.context.get('request')
-        image_url = obj.image.url
-        return request.build_absolute_uri(image_url)
+class OurOfferListView(generics.ListAPIView):
+    queryset = OurOffer.objects.all()
+    serializer_class = OurOfferSerializer
 
 
-class ServiceListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        service = Service.objects.all()
-        serializers = ServiceSerializer(service, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
+class ServiceListView(generics.ListAPIView):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
 
-class IndustryListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        industry = Industry.objects.all()
-        serializers = IndustrySerializer(industry, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
-
-    def get_image(self, obj):
-        request = self.context.get('request')
-        image_url = obj.image.url
-        return request.build_absolute_uri(image_url)
+class IndustryListView(generics.ListAPIView):
+    queryset = Industry.objects.all()
+    serializer_class = IndustrySerializer
 
 
-class ReviewListView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        review = Review.objects.all()
-        serializers = ReviewSerializer(review, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
-
-    def get_image(self, obj):
-        request = self.context.get('request')
-        image_url = obj.image.url
-        return request.build_absolute_uri(image_url)
+class ReviewListView(generics.ListAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
 
 
 class FAQListView(APIView):
@@ -250,7 +215,15 @@ class LanguageListView(APIView):
 
     def get(self, request, *args, **kwargs):
         language = Language.objects.all()
-        serializers = LanguageSerializers(language, many=True)
+        serializers = LanguageSerializer(language, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+    
+
+class ConsultListView(APIView):
+    
+    def get(self, request, *args, **kwargs):
+        consult = Consult.objects.all()
+        serializers = ConsultSerializer(consult, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 
 

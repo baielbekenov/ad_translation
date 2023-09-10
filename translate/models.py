@@ -115,3 +115,13 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.question
+    
+    
+class Consult(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Name')
+    email = models.EmailField(verbose_name='Email')
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
