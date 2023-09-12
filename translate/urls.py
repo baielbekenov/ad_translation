@@ -16,7 +16,7 @@ urlpatterns = [
     path('industries/create/', IndustryCreateView.as_view(), name='industry-create'),
     path('reviews/create/', ReviewCreateView.as_view(), name='review-create'),
     path('order/create/', OrderCreateView.as_view(), name='order-create'),
-    path('faq/create/', FAQCreateView.as_view(), name='faq-create'),
+    path('faq/create/', FAQCreateView.as_view(), name='faq-     '),
     path('consult/create/', ConsultcreateView.as_view(), name='consult-create'),
 
     path('hashtags/list/', HashtagListView.as_view(), name='hashtag-list'),
