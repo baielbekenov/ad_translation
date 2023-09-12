@@ -100,7 +100,7 @@ class Order(models.Model):
     source_language = models.ManyToManyField(Language, related_name='source_orders')
     target_language = models.ManyToManyField(Language, related_name='target_orders')
     documents = models.FileField(upload_to='order_documents/', blank=True, null=True)
-    link = models.UrlField(blank=True, null=True)
+    link = models.CharField(max_length=400, blank=True, null=True)
     deadline = models.DateField()
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
