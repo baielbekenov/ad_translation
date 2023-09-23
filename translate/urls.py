@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ConsultListView, ConsultcreateView, HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
+from .views import ConsultListView, ConsultcreateView, FreelancerCreateView, FreelancerListView, HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
     ReviewCreateView, FAQCreateView, HashtagListView, OurOfferListView, ServiceListView, \
     IndustryListView, ReviewListView, FAQListView, LanguageListView, OrderCreateView, OrderListView, RegisterView, \
     LogoutView, LoginView, LatestUpdateListAPIView
@@ -18,6 +18,7 @@ urlpatterns = [
     path('order/create/', OrderCreateView.as_view(), name='order-create'),
     path('faq/create/', FAQCreateView.as_view(), name='faq-     '),
     path('consult/create/', ConsultcreateView.as_view(), name='consult-create'),
+    path('freelance/create/', FreelancerCreateView.as_view(), name='freelance-crate'),
 
     path('hashtags/list/', HashtagListView.as_view(), name='hashtag-list'),
     path('latest_updates/list/', LatestUpdateListAPIView.as_view(), name='latest-update-list'),
@@ -28,5 +29,6 @@ urlpatterns = [
     path('reviews/list/', ReviewListView.as_view(), name='review-list'),
     path('order/list/', OrderListView.as_view(), name='order-list'),
     path('faq/list/', FAQListView.as_view(), name='faq-list'),
-    path('consult/list/', ConsultListView.as_view(), name='consult-list')
+    path('consult/list/', ConsultListView.as_view(), name='consult-list'),
+    path('freelance/list/', FreelancerListView.as_view(), name='freelance-list')
 ]

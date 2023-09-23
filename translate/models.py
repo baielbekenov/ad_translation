@@ -126,3 +126,13 @@ class Consult(models.Model):
     def __str__(self):
         return self.name
     
+    
+class Freelancer(models.Model):
+    full_name = models.CharField(max_length=150, verbose_name='full_name')
+    email = models.EmailField(verbose_name='Email')
+    phone_number = models.IntegerField(verbose_name='Phone number')
+    language1 = models.ManyToManyField(Language, related_name='language1')     
+    language2 = models.ManyToManyField(Language, related_name='language2')
+    
+    def __str__(self):
+        return self.full_name
