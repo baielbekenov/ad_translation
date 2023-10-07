@@ -288,8 +288,19 @@ class FreelancerListView(APIView):
         freelancer = Freelancer.objects.all()
         serializers = FreelancerSerializer(freelancer, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
-        
+    
+    
+# --------------------------------------------
 
 
+class LanguageRetrieveView(generics.RetrieveAPIView):
+    queryset = Language.objects.all()
+    serializer_class = LanguageSerializer
+    
+
+class IndustryRetrieveView(generics.RetrieveAPIView):
+    queryset = Industry.objects.all()
+    serializer_class = IndustrySerializer
+    
 
 

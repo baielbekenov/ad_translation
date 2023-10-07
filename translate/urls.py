@@ -2,7 +2,7 @@ from django.urls import path
 from .views import ConsultListView, ConsultcreateView, FreelancerCreateView, FreelancerListView, HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
     ReviewCreateView, FAQCreateView, HashtagListView, OurOfferListView, ServiceListView, \
     IndustryListView, ReviewListView, FAQListView, LanguageListView, OrderCreateView, OrderListView, RegisterView, \
-    LogoutView, LoginView, LatestUpdateListAPIView
+    LogoutView, LoginView, LatestUpdateListAPIView, IndustryRetrieveView, LanguageRetrieveView
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -30,5 +30,8 @@ urlpatterns = [
     path('order/list/', OrderListView.as_view(), name='order-list'),
     path('faq/list/', FAQListView.as_view(), name='faq-list'),
     path('consult/list/', ConsultListView.as_view(), name='consult-list'),
-    path('freelance/list/', FreelancerListView.as_view(), name='freelance-list')
+    path('freelance/list/', FreelancerListView.as_view(), name='freelance-list'),
+    
+    path('industry_detail/<int:pk>/', IndustryRetrieveView.as_view(), name='industry_detail'),
+    path('language_detail/<int:pk>/', LanguageRetrieveView.as_view(), name='language_detail')
 ]
