@@ -32,6 +32,6 @@ urlpatterns = [
     path('consult/list/', ConsultListView.as_view(), name='consult-list'),
     path('freelance/list/', FreelancerListView.as_view(), name='freelance-list'),
     
-    path('industry_detail/<int:pk>/', IndustryRetrieveView.as_view(), name='industry_detail'),
-    path('language_detail/<int:pk>/', LanguageRetrieveView.as_view(), name='language_detail')
+    path('detailed/industries/<int:pk>/', IndustryRetrieveView.as_view(), name='industry_detail'),
+    path('detailed/languages/<int:pk>/', LanguageRetrieveView.as_view(), name='language_detail')
 ]
