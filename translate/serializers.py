@@ -47,7 +47,7 @@ class DetailLanguageSerializer(serializers.ModelSerializer):
 
 
 class LanguageSerializer(serializers.ModelSerializer):
-    detailpage = DetailLanguageSerializer(many=True, read_only=True)
+    detaillanguage = DetailLanguageSerializer(many=True, read_only=True)
     
     class Meta:
         model = Language
@@ -81,7 +81,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class IndustrySerializer(serializers.ModelSerializer):
-    detailpage = DetailIndustrySerializer(many=True, read_only=True)
+    detailindustry = DetailIndustrySerializer(many=True, read_only=True)
     
     class Meta:
         model = Industry
