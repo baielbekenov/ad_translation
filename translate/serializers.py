@@ -1,5 +1,6 @@
+from django.conf import settings
 from rest_framework import serializers
-from .models import Consult, Freelancer, Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
+from .models import Consult, DetailIndustry, DetailLanguage, Freelancer, Hashtag, LatestUpdate, OurOffer, Service, Industry, Review, FAQ, Language, Order, User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,11 +37,26 @@ class HashtagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hashtag
         fields = '__all__'
+        
+ 
+class DetailLanguageSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = DetailLanguage
+        fields = '__all__' 
 
 
 class LanguageSerializer(serializers.ModelSerializer):
+    detaillanguage = DetailLanguageSerializer(many=True, read_only=True)
+    
     class Meta:
         model = Language
+        fields = '__all__'
+        
+
+class DetailIndustrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetailIndustry
         fields = '__all__'
 
 
@@ -65,6 +81,8 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class IndustrySerializer(serializers.ModelSerializer):
+    detailindustry = DetailIndustrySerializer(many=True, read_only=True)
+    
     class Meta:
         model = Industry
         fields = '__all__'

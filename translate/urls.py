@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ConsultListView, ConsultcreateView, FreelancerCreateView, FreelancerListView, HashtagCreateView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
+from .views import ConsultListView, ConsultcreateView, FreelancerCreateView, FreelancerListView, HashtagCreateView, IndustryDetailView, LatestUpdateCreateView, OurOfferCreateView, ServiceCreateView, IndustryCreateView, \
     ReviewCreateView, FAQCreateView, HashtagListView, OurOfferListView, ServiceListView, \
     IndustryListView, ReviewListView, FAQListView, LanguageListView, OrderCreateView, OrderListView, RegisterView, \
-    LogoutView, LoginView, LatestUpdateListAPIView, IndustryRetrieveView, LanguageRetrieveView
+    LogoutView, LoginView, LatestUpdateListAPIView, LanguageRetrieveView
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -32,6 +32,6 @@ urlpatterns = [
     path('consult/list/', ConsultListView.as_view(), name='consult-list'),
     path('freelance/list/', FreelancerListView.as_view(), name='freelance-list'),
     
-    path('detailed/industries/<int:pk>/', IndustryRetrieveView.as_view(), name='industry_detail'),
+    path('detailed/industries/<int:pk>/', IndustryDetailView.as_view(), name='industry_detail'),
     path('detailed/languages/<int:pk>/', LanguageRetrieveView.as_view(), name='language_detail')
 ]

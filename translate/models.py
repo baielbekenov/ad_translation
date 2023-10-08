@@ -19,10 +19,19 @@ class Hashtag(models.Model):
 
 class Language(models.Model):
     name = models.CharField(max_length=50)
-    text = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
+    
+
+class DetailLanguage(models.Model):
+    name = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='detaillanguage')
+    subtitle = models.CharField(max_length=30, blank=True, null=True)
+    description = models.TextField(verbose_name='Description')
+    img = models.ImageField(upload_to='detaillanguage_pic/', blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.name)
 
 
 class LatestUpdate(models.Model):
@@ -70,6 +79,16 @@ class Industry(models.Model):
 
     def __str__(self):
         return self.iconText
+    
+    
+class DetailIndustry(models.Model):
+    name = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name='detailindustry')
+    subtitle = models.CharField(max_length=30, blank=True, null=True)
+    description = models.TextField(verbose_name='Description')
+    img = models.ImageField(upload_to='detailindustry_pic/', blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.name)
 
 
 class Review(models.Model):

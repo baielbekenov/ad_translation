@@ -298,7 +298,7 @@ class LanguageRetrieveView(generics.RetrieveAPIView):
     serializer_class = LanguageSerializer
     
 
-class IndustryRetrieveView(generics.RetrieveAPIView):
+class IndustryDetailView(generics.RetrieveAPIView):
     queryset = Industry.objects.all()
     serializer_class = IndustrySerializer
     

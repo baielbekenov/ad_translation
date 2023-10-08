@@ -2,9 +2,17 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
 from translate.models import Hashtag, LatestUpdate, OurOffer, Service, \
-    Industry, Review, FAQ, Language, Order, Consult, Freelancer
+    Industry, Review, FAQ, Language, Order, Consult, Freelancer, DetailLanguage, DetailIndustry
 
 # Register your models here.
+
+class DetailLanguageAdmin(TranslationAdmin):
+    pass
+
+
+class DetailIndustryAdmin(TranslationAdmin):
+    pass
+
 
 class LatestUpdateAdmin(TranslationAdmin):
     pass
@@ -35,6 +43,8 @@ class FAQAdmin(TranslationAdmin):
 
 
 
+admin.site.register(DetailIndustry, DetailIndustryAdmin)
+admin.site.register(DetailLanguage, DetailLanguageAdmin)
 admin.site.register(Hashtag)
 admin.site.register(LatestUpdate, LatestUpdateAdmin)
 admin.site.register(OurOffer, OurOfferAdmin)
