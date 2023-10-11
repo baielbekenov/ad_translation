@@ -32,7 +32,7 @@ class DetailLanguage(models.Model):
     img = models.ImageField(upload_to='detaillanguage_pic/', blank=True, null=True)
     
     def __str__(self):
-        return str(self.name)
+        return str(self.name) + '-->' + self.subtitle
 
 
 class LatestUpdate(models.Model):
@@ -89,7 +89,7 @@ class DetailIndustry(models.Model):
     img = models.ImageField(upload_to='detailindustry_pic/', blank=True, null=True)
     
     def __str__(self):
-        return str(self.name)
+        return str(self.name) + '-->' + self.subtitle
 
 
 class Review(models.Model):
