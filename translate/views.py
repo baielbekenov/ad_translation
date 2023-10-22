@@ -127,7 +127,7 @@ class LanguageListView(APIView):
 
     def get(self, request, *args, **kwargs):
         language = Language.objects.all()
-        serializers = LanguageSerializer(language, many=True)
+        serializers = LanguageSerializer(language, many=True, context={'request': request})
         return Response(serializers.data, status=status.HTTP_200_OK)
     
     def get_queryset(self):

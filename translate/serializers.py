@@ -19,9 +19,14 @@ class DetailLanguageSerializer(serializers.ModelSerializer):
 class LanguageSerializer(serializers.ModelSerializer):
     detaillanguage = DetailLanguageSerializer(many=True, read_only=True)
     
+    
     class Meta:
         model = Language
         fields = '__all__'
+        
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.img.url) if obj.img else None
         
 
 class DetailIndustrySerializer(serializers.ModelSerializer):
