@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/', include('translate.urls')),
     path('api/v1/auth/', include('djoser.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
     re_path(r'^auth/', include('djoser.urls.authtoken'))
 ]
 
